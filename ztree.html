@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>傻瓜式使用树形组件（依赖jQuery）</title>
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="Content/ztree/css/awesomeStyle/awesome.css" rel="stylesheet" />
+    <link href="Scripts/layui/css/layui.css" rel="stylesheet" />
+    <style type="text/css">
+        .layui-form-label {
+            width: 150px;
+        }
+    </style>
+    <script src="Scripts/jquery-3.3.1.js"></script>
+    <script src="Scripts/modules/zTreeCore.js"></script>
+    <script src="Scripts/modules/zTreeExcheck.js"></script>
+    <script src="Scripts/modules/zTreeExhide.js"></script>
+    <script src="Scripts/modules/zTreeFuzzySearch.js"></script>
+    <script src="Scripts/modules/zTreeDropDownList.js"></script>
+    <script src="Scripts/modules/zTreeRadioList.js"></script>
+</head>
+<body>
+    <div style="padding: 20px; background-color: #F2F2F2;">
+        <div class="layui-card">
+            <div class="layui-card-header">傻瓜式使用树形组件（依赖jQuery）</div>
+            <div class="layui-card-body">
+                <form class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">复选下拉框含隐藏域</label>
+                        <div class="layui-inline">
+                            <input id="TreeDisplay1" type="text" class="layui-input" value="" />
+                            <input id="TreeValue1" type="hidden" value="" />
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">下拉框不含隐藏域</label>
+                        <div class="layui-inline">
+                            <input id="TreeValue2" type="text" class="layui-input" value="" />
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">单选下拉框</label>
+                        <div class="layui-inline">
+                            <input id="TreeDisplay3" type="text" class="layui-input" value="" />
+                            <input id="TreeValue3" type="hidden" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">分组单选下拉框</label>
+                        <div class="layui-inline">
+                            <input id="TreeDisplay4" type="text" class="layui-input" value="" />
+                            <input id="TreeValue4" type="hidden" value="" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var data = [{ "ID": 1, "CateName": "虾蟹贝类", "CateIcon": "/Upload/Category/2019/2/20190227/6628b3e30d104cf881e3b99219193568.png", "DisplaySort": 1, "EnableCount": 0, "UnenableCount": 0, "ParentID": 0, "AddTime": "2019-01-24 11:23:16", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-01-24 11:23:16", "Deleted": 0, "isShow": true }, { "ID": 2, "CateName": "鸡副类", "CateIcon": "/Upload/Category/nav_icon_02.png", "DisplaySort": 2, "EnableCount": 0, "UnenableCount": 0, "ParentID": 0, "AddTime": "2019-01-24 14:05:54", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-01-24 14:05:54", "Deleted": 0 }, { "ID": 3, "CateName": "鱼类", "CateIcon": "/Upload/Category/nav_icon_03.png", "DisplaySort": 3, "EnableCount": 0, "UnenableCount": 0, "ParentID": 0, "AddTime": "2019-01-24 14:06:11", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-01-24 14:06:11", "Deleted": 0 }, { "ID": 4, "CateName": "调理类", "CateIcon": "/Upload/Category/nav_icon_04.png", "DisplaySort": 4, "EnableCount": 0, "UnenableCount": 0, "ParentID": 0, "AddTime": "2019-01-24 14:06:38", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-01-24 14:06:38", "Deleted": 0 }, { "ID": 5, "CateName": "鸭副类", "CateIcon": "/Upload/Category/nav_icon_05.png", "DisplaySort": 5, "EnableCount": 0, "UnenableCount": 0, "ParentID": 0, "AddTime": "2019-01-24 14:07:03", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-01-24 14:07:03", "Deleted": 0 }, { "ID": 6, "CateName": "牛羊肉类", "CateIcon": "/Upload/Category/nav_icon_06.png", "DisplaySort": 6, "EnableCount": 0, "UnenableCount": 0, "ParentID": 0, "AddTime": "2019-01-24 14:07:22", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-01-24 14:07:22", "Deleted": 0 }, { "ID": 7, "CateName": "面点类", "CateIcon": "/Upload/Category/nav_icon_07.png", "DisplaySort": 7, "EnableCount": 0, "UnenableCount": 0, "ParentID": 0, "AddTime": "2019-01-24 14:07:43", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-02-21 10:47:00", "Deleted": 0 }, { "ID": 8, "CateName": "鸭肠", "CateIcon": "/Upload/Category/wallhaven-688072.png", "DisplaySort": 1, "EnableCount": 0, "UnenableCount": 0, "ParentID": 5, "AddTime": "2019-01-25 15:20:05", "AddUser": "石家庄管理员", "AddUserID": 1, "UpdateUser": "石家庄管理员", "UpdateTime": "2019-01-25 15:20:05", "Deleted": 0 }, { "ID": 9, "CateName": "虾", "CateIcon": "/Upload/Category/2019/2/20190227/da72724792f24c3f89b91eb921b9c367.png", "DisplaySort": 0, "EnableCount": 0, "UnenableCount": 0, "ParentID": 1, "AddTime": "2019-01-25 16:07:53", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-01-25 16:07:53", "Deleted": 0, "selected": true }, { "ID": 10, "CateName": "蟹", "CateIcon": null, "DisplaySort": 0, "EnableCount": 0, "UnenableCount": 0, "ParentID": 1, "AddTime": "2019-01-25 16:08:03", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-01-25 16:08:03", "Deleted": 0, "selected": false }, { "ID": 11, "CateName": "贝", "CateIcon": null, "DisplaySort": 0, "EnableCount": 0, "UnenableCount": 0, "ParentID": 1, "AddTime": "2019-01-25 16:08:12", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-01-25 16:08:12", "Deleted": 0, "selected": false }, { "ID": 12, "CateName": "海鱼", "CateIcon": null, "DisplaySort": 0, "EnableCount": 0, "UnenableCount": 0, "ParentID": 3, "AddTime": "2019-01-25 16:52:08", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-01-25 16:52:08", "Deleted": 0 }, { "ID": 13, "CateName": "冬虾", "CateIcon": null, "DisplaySort": 0, "EnableCount": 0, "UnenableCount": 0, "ParentID": 9, "AddTime": "2019-01-25 17:04:05", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-01-25 17:04:05", "Deleted": 0 }, { "ID": 14, "CateName": "冻大虾", "CateIcon": "/Upload/Category/nav_icon_04.png", "DisplaySort": 0, "EnableCount": 0, "UnenableCount": 0, "ParentID": 13, "AddTime": "2019-01-25 17:04:58", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-01-25 17:04:58", "Deleted": 0 }, { "ID": 17, "CateName": "测试类", "CateIcon": "/Upload/Category/操作栏无删除.png", "DisplaySort": 8, "EnableCount": 0, "UnenableCount": 0, "ParentID": 0, "AddTime": "2019-02-21 10:45:46", "AddUser": "admin", "AddUserID": 1, "UpdateUser": "admin", "UpdateTime": "2019-02-21 10:48:25", "Deleted": 0 }];
+
+        //树形下拉框含隐藏域用法
+        var treeDropDownList = new zTreeDropDownList({
+            "displayField": "CateName",
+            "idField": "ID",
+            "pIdField": "ParentID"
+        }, data, "TreeValue1", "TreeDisplay1", true, true, { "CheckP": false, "CheckS": true, "UnCheckP": true, "UnCheckS": true });
+        treeDropDownList.onChange = function (node) {
+            console.log(node);
+        };
+        treeDropDownList.SetValue([9, 13, 14, 11]);
+
+        //树形下拉框不含隐藏域用法
+        var treeDropDownList2 = new zTreeDropDownList({
+            "displayField": "CateName",
+            "idField": "ID",
+            "pIdField": "ParentID",
+            "valueField": "CateName"
+        }, data, "TreeValue2");
+
+        //树形单选下拉框
+        var treeRadioList = new zTreeRadioList({
+            "displayField": "CateName",
+            "idField": "ID",
+            "pIdField": "ParentID"
+        }, data, "TreeValue3", "TreeDisplay3", true, true);
+        treeRadioList.onChange = function (node) {
+            console.log(node);
+        };
+
+        treeRadioList.SetValue(14);
+
+        //树形分组单选下拉框
+        var treeRadioList2 = new zTreeRadioList({
+            "displayField": "CateName",
+            "idField": "ID",
+            "pIdField": "ParentID"
+        }, data, "TreeValue4", "TreeDisplay4", true, false, "level");
+
+        treeRadioList2.SetValue("14,10");
+    </script>
+</body>
+</html>
